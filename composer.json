@@ -23,7 +23,7 @@
 	},
 	"autoload": {
 		"psr-4": {
-			"ProjectSoft\\Evolution\\": "src/Evolution"
+			"ProjectSoft\\Evolution\\": "/src/Evolution"
 		}
 	}
 }
