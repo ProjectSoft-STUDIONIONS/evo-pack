@@ -6,7 +6,7 @@
 	"type": "library",
 	"minimum-stability": "dev",
 	"prefer-stable": true,
-	"license": "GPL-3.0",
+	"license": "MIT",
 	"authors": [
 		{
 			"name": "ProjectSoft",
@@ -15,13 +15,15 @@
 	],
 	"require": {
 		"php": ">=7.1",
-		"phpoffice/phpspreadsheet": ">=1.9",
+		"phpoffice/phpspreadsheet": ">=1.9.0",
+		"phpoffice/phppresentation": ">=1.0.0",
+		"phpoffice/phpword": ">=0.18.3",
 		"mpdf/mpdf": ">=7.0.0",
 		"ps/image-optimizer": ">=2.0"
 	},
 	"autoload": {
 		"psr-4": {
-			"ProjectSoft\\": "/src"
+			"ProjectSoft\\Evolution": "src/Evolution"
 		}
 	}
 }
