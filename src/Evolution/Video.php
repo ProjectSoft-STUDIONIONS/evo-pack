@@ -87,7 +87,13 @@ class Video {
 					$img = $this->fetchPage($json['thumbnail_url']);
 					@file_put_contents(MODX_BASE_PATH . $img_file, $img);
 					if(is_file(MODX_BASE_PATH . $img_file)){
+						$modx = EvolutionCMS();
+						$img = $modx->runSnippet('phpthumb', array(
+							'input' => $img_file,
+							'options' => 'w=680,h=360,zc=C'
+						));
 						$this->videoInfo['image'] = $img_file;
+						$this->videoInfo['image_resize'] = $img;
 					}else{
 						$this->videoInfo['image'] = $json['thumbnail_url'];
 					}
