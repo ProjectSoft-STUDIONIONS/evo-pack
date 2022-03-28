@@ -118,6 +118,7 @@ class Video {
 		preg_match($re, $this->link, $match);
 		if(count($match)){
 			$this->videoInfo['id'] = $match[0];
+			$this->videoInfo['link'] = $this->link;
 			$embed = 'https://www.youtube.com/embed/' . $match[0] . '?';
 			parse_str(parse_url($this->link, PHP_URL_QUERY), $params);
 			if($params['list']){
