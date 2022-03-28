@@ -73,6 +73,7 @@ class Video {
 			$json = json_decode($str, true);
 			if($json['track_id']){
 				$this->videoInfo['id'] = $json['track_id'];
+				$this->videoInfo['link'] = $this->link;
 				$this->videoInfo['video'] = '<div class="embed"><div class="embed-responsive embed-responsive-16by9"><iframe src="https://rutube.ru/play/embed/' . $json['track_id'] . '" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture" webkitAllowFullScreen mozallowfullscreen allowfullscreen></iframe></div></div>';
 				/** Скачать и сохранить если сохраняется документ */
 				@mkdir(MODX_BASE_PATH . $this->dir_images . $this->hosting . '/', 0755, true);
