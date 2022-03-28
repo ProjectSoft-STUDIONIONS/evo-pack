@@ -1,5 +1,5 @@
 <?php
-namespace ProjectSoft\Evolution;
+namespace EvoPack\Evolution;
 
 class Video {
 
