@@ -82,7 +82,7 @@ class Video {
 				/** Скачать и сохранить если сохраняется документ */
 				@mkdir(MODX_BASE_PATH . $this->dir_images . $this->hosting . '/', 0755, true);
 				$img_file = $this->dir_images . $this->hosting . '/' . $json['track_id'] . '.jpg';
-				if(is_file($img_file)){
+				if(is_file(MODX_BASE_PATH . $img_file)){
 					$this->videoInfo['image'] = $img_file;
 				}else{
 					$this->videoInfo['image'] = $json['thumbnail_url'];
