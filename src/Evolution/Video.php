@@ -84,30 +84,22 @@ class Video {
 				$img_file = $this->dir_images . $this->hosting . '/' . $json['track_id'] . '.jpg';
 				if(is_file($img_file)){
 					$this->videoInfo['image'] = $img_file;
-					$img = $this->modx->runSnippet('phpthumb', array(
-						'input' => $img_file,
-						'options' => 'w=680,h=360,zc=C'
-					));
-					$this->videoInfo['image'] = $img_file;
-					$this->videoInfo['image_resize'] = $img;
 				}else{
 					$this->videoInfo['image'] = $json['thumbnail_url'];
-					$this->videoInfo['image_resize'] = $json['thumbnail_url'];
 				}
 				if($this->autosave){
 					$img = $this->fetchPage($json['thumbnail_url']);
 					@file_put_contents(MODX_BASE_PATH . $img_file, $img);
 					if(is_file(MODX_BASE_PATH . $img_file)){
 						$modx = EvolutionCMS();
-						$img = $this->modx->runSnippet('phpthumb', array(
+						$image = $this->modx->runSnippet('phpthumb', array(
 							'input' => $img_file,
 							'options' => 'w=680,h=360,zc=C'
 						));
+						@copy(MODX_BASE_PATH . $image, MODX_BASE_PATH . $img_file);
 						$this->videoInfo['image'] = $img_file;
-						$this->videoInfo['image_resize'] = $img;
 					}else{
 						$this->videoInfo['image'] = $json['thumbnail_url'];
-						$this->videoInfo['image_resize'] = $json['thumbnail_url'];
 					}
 				}
 			}else{
@@ -140,28 +132,21 @@ class Video {
 			$img_file = $this->dir_images . $this->hosting . '/' . $match[0] . '.jpg';
 			if(is_file(MODX_BASE_PATH . $img_file)){
 				$this->videoInfo['image'] = $img_file;
-				$img = $this->modx->runSnippet('phpthumb', array(
-					'input' => $img_file,
-					'options' => 'w=680,h=360,zc=C'
-				));
-				$this->videoInfo['image_resize'] = $img;
 			}else{
 				$this->videoInfo['image'] = $image;
-				$this->videoInfo['image_resize'] = $image;
 			}
 			if($this->autosave){
 				$img = $this->fetchPage($image);
 				@file_put_contents(MODX_BASE_PATH . $img_file, $img);
 				if(is_file(MODX_BASE_PATH . $img_file)){
-					$this->videoInfo['image'] = $img_file;
-					$img = $this->modx->runSnippet('phpthumb', array(
+					$image = $this->modx->runSnippet('phpthumb', array(
 						'input' => $img_file,
 						'options' => 'w=680,h=360,zc=C'
 					));
-					$this->videoInfo['image_resize'] = $img;
+					@copy(MODX_BASE_PATH . $image, MODX_BASE_PATH . $img_file);
+					$this->videoInfo['image'] = $img_file;
 				}else{
 					$this->videoInfo['image'] = $image;
-					$this->videoInfo['image_resize'] = $image;
 				}
 			}
 		}else{
